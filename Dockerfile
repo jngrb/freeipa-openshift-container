@@ -10,6 +10,9 @@ RUN sed -i 's/Requires=systemd-tmpfiles-setup.service systemd-journald.service d
 RUN sed -i 's/After=systemd-tmpfiles-setup.service systemd-journald.service dbus.service/After=systemd-journald.service dbus.service/' /usr/lib/systemd/system/ipa-server-upgrade.service
 RUN sed -i 's/Requires=systemd-tmpfiles-setup.service systemd-journald.service dbus.service/Requires=systemd-journald.service/' /usr/lib/systemd/system/container-ipa.target
 RUN sed -i 's/After=systemd-tmpfiles-setup.service systemd-journald.service dbus.service/After=systemd-journald.service dbus.service/' /usr/lib/systemd/system/container-ipa.target
+# otherwise I get with fedora-rawhide the following error during startup:
+# FileExistsError: [Errno 17] File exists: '/run/gssproxy.default.sock' -> '/var/lib/gssproxy/default.sock'
+RUN rm -f /usr/lib/tmpfiles.d/gssproxy.conf
 
 # Just copy the ocp4 include shell file and parse the include list to 
 # add it at the end

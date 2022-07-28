@@ -10,6 +10,18 @@ RUN sed -i 's/Requires=systemd-tmpfiles-setup.service systemd-journald.service d
 RUN sed -i 's/After=systemd-tmpfiles-setup.service systemd-journald.service dbus.service/After=systemd-journald.service dbus.service/' /usr/lib/systemd/system/ipa-server-upgrade.service
 RUN sed -i 's/Requires=systemd-tmpfiles-setup.service systemd-journald.service dbus.service/Requires=systemd-journald.service/' /usr/lib/systemd/system/container-ipa.target
 RUN sed -i 's/After=systemd-tmpfiles-setup.service systemd-journald.service dbus.service/After=systemd-journald.service dbus.service/' /usr/lib/systemd/system/container-ipa.target
+RUN sed -i 's/^ProtectSystem=full/# ProtectSystem=full/g' /usr/lib/systemd/system/dirsrv@.service
+RUN sed -i 's/^ReadWritePaths=/etc/dirsrv/# ReadWritePaths=/etc/dirsrv/g' /usr/lib/systemd/system/dirsrv@.service
+RUN sed -i 's/^ProtectHome=true/# ProtectHome=true/g' /usr/lib/systemd/system/dirsrv@.service
+RUN sed -i 's/^PrivateDevices=true/# PrivateDevices=true/g' /usr/lib/systemd/system/dirsrv@.service
+RUN sed -i 's/^ProtectHostname=true/# ProtectHostname=true/g' /usr/lib/systemd/system/dirsrv@.service
+RUN sed -i 's/^ProtectClock=true/# ProtectClock=true/g' /usr/lib/systemd/system/dirsrv@.service
+RUN sed -i 's/^ProtectKernelTunables=true/# ProtectKernelTunables=true/g' /usr/lib/systemd/system/dirsrv@.service
+RUN sed -i 's/^ProtectKernelModules=true/# ProtectKernelModules=true/g' /usr/lib/systemd/system/dirsrv@.service
+RUN sed -i 's/^ProtectKernelLogs=true/# ProtectKernelLogs=true/g' /usr/lib/systemd/system/dirsrv@.service
+RUN sed -i 's/^ProtectKernelLogs=true/# ProtectKernelLogs=true/g' /usr/lib/systemd/system/dirsrv@.service
+RUN sed -i 's/^ProtectControlGroups=true/# ProtectControlGroups=true/g' /usr/lib/systemd/system/dirsrv@.service
+RUN sed -i 's/^RestrictRealtime=true/# RestrictRealtime=true/g' /usr/lib/systemd/system/dirsrv@.service
 
 # Just copy the ocp4 include shell file and parse the include list to 
 # add it at the end

@@ -11,7 +11,7 @@ RUN sed -i 's/After=systemd-tmpfiles-setup.service systemd-journald.service dbus
 RUN sed -i 's/Requires=systemd-tmpfiles-setup.service systemd-journald.service dbus.service/Requires=systemd-journald.service/' /usr/lib/systemd/system/container-ipa.target
 RUN sed -i 's/After=systemd-tmpfiles-setup.service systemd-journald.service dbus.service/After=systemd-journald.service dbus.service/' /usr/lib/systemd/system/container-ipa.target
 RUN sed -i 's/^ProtectSystem=full/# ProtectSystem=full/g' /usr/lib/systemd/system/dirsrv@.service
-RUN sed -i 's/^ReadWritePaths=/etc/dirsrv/# ReadWritePaths=/etc/dirsrv/g' /usr/lib/systemd/system/dirsrv@.service
+RUN sed -i 's/^ReadWritePaths=/# ReadWritePaths=/g' /usr/lib/systemd/system/dirsrv@.service
 RUN sed -i 's/^ProtectHome=true/# ProtectHome=true/g' /usr/lib/systemd/system/dirsrv@.service
 RUN sed -i 's/^PrivateDevices=true/# PrivateDevices=true/g' /usr/lib/systemd/system/dirsrv@.service
 RUN sed -i 's/^ProtectHostname=true/# ProtectHostname=true/g' /usr/lib/systemd/system/dirsrv@.service

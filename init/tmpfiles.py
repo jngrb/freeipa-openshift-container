@@ -504,7 +504,7 @@ class SymlinkCreate(Action):
                 # TODO link to /usr/share/factory/FILE
                 # (see tmpfiles.d(5) for details)
                 raise RuntimeError("symlink target not specified")
-            os.symlink(self.arg, path)
+            os.symlink(path, self.arg)
 
 
 class SymlinkRecreate(SymlinkCreate):
